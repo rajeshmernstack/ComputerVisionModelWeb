@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <!-- <a id="link"></a> -->
+
+
+    <!-- <img id="before" src="./old.jpg" alt="before"> -->
+
+    <img id="after" src="./new.jpg" alt="after">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            const webcamElement = document.getElementById('webcam');
+            const canvasElement = document.getElementById('canvas');
+            const webcam = new Webcam(webcamElement, 'user', canvasElement);
+            // webcam.set({
+            //     width: 320,
+            //     height: 240,
+            //     image_format: 'jpg',
+            //     jpeg_quality: 90
+            // });
+            webcam.start()
+                .then(result => {
+                    console.log("webcam started");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+            setInterval(() => {
+
+                var picture = webcam.snap();
+
+                console.log(picture);
+
+                $.post('http://localhost:3000/save_image', { base64Src: picture }, function (data) {
+                    console.log(data);
+                    $('#before').attr('src', './old.jpg?'+Date.now());
+                    $('#after').attr('src', './new.jpg?'+Date.now());
+                })
+                // link.setAttribute('download', 'old.png');
+                // link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+                // link.click();
+            }, 1000)
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>
