@@ -4,6 +4,8 @@ const app = express();
 var cors = require('cors')
 app.use(cors())
 
+require('dotenv').config();
+
 const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -32,4 +34,4 @@ app.post('/save_image', (req, res) => {
     res.json({ message: "Image Saved Successfully", imageInfo: imageInfo });
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 5000)
