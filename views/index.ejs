@@ -47,7 +47,7 @@
 
                 console.log(picture);
 
-                $.post('http://localhost:3000/save_image', { base64Src: picture }, function (data) {
+                $.post('/save_image', { base64Src: picture }, function (data) {
                     console.log(data);
                     // $('#before').attr('src', './public/images/old.jpg?'+Date.now());
                     $('#after').attr('src', './images/new.jpg?'+Date.now());
