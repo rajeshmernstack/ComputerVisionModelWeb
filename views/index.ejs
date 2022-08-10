@@ -45,7 +45,7 @@
 
                 var picture = webcam.snap();
 
-                console.log(picture);
+                // console.log(picture);
 
                 $.post('/save_image', { base64Src: picture }, function (data) {
                     // $('#before').attr('src', './public/images/old.jpg?'+Date.now());
