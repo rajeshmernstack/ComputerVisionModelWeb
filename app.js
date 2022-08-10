@@ -32,9 +32,11 @@ app.post('/save_image', (req, res) => {
     const pyProg = spawn('python', ['deadliftApp.py']);
     pyProg.stdout.on('data', (data) => {
 
-    res.json({ message: "Image Saved Successfully", imageInfo: imageInfo, imageSrc: data });
         // Do something with the data returned from python script
+        console.log(data)
     });
+
+    res.json({ message: "Image Saved Successfully", imageInfo: imageInfo });
 
 });
 
