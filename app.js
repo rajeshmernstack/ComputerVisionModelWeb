@@ -28,15 +28,16 @@ app.post('/save_image', (req, res) => {
 
     var imageInfo = base64ToImage(base64Str, path, optionalObj);
 
-   
+   var msg;
     const pyProg = spawn('python', ['deadliftApp.py']);
     pyProg.stdout.on('data', (data) => {
 
         // Do something with the data returned from python script
         console.log(data)
+        msg = "deployed"
     });
 
-    res.json({ message: "Image Saved Successfully", imageInfo: imageInfo });
+    res.json({ message: "Image Saved Successfully", imageInfo: imageInfo, dum: msg });
 
 });
 
