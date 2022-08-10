@@ -16,7 +16,7 @@
 
     <!-- <img id="before" src="./old.jpg" alt="before"> -->
 
-    <img id="after" src="./new.jpg" alt="after">
+    <img id="after" src="/images/new.jpg" alt="after">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -49,8 +49,8 @@
 
                 $.post('http://localhost:3000/save_image', { base64Src: picture }, function (data) {
                     console.log(data);
-                    $('#before').attr('src', './old.jpg?'+Date.now());
-                    $('#after').attr('src', './new.jpg?'+Date.now());
+                    // $('#before').attr('src', './public/images/old.jpg?'+Date.now());
+                    $('#after').attr('src', './images/new.jpg?'+Date.now());
                 })
                 // link.setAttribute('download', 'old.png');
                 // link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));

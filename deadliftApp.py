@@ -129,7 +129,7 @@ detector = poseDetector()
 # while cap.isOpened():
 # while True:
 # success, img = cap.read()
-img = cv2.imread("old.jpg")
+img = cv2.imread("./public/images/old.jpg")
 img = cv2.flip(img, 1)
 img, IsPose = detector.findPose(img, draw=True)
 # frame_width = int(cap.get(3)) # 640
@@ -268,7 +268,7 @@ if IsPose:
     CountAngle = []
 
     # cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
-    cv2.imwrite("new.jpg", img)
+    cv2.imwrite("./public/images/new.jpg", img)
     # cv2.imshow('Image', img)
 
     # if cv2.waitKey(1) & 0xFF == ord('q'):
