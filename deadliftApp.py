@@ -7,6 +7,8 @@ from numpy import savetxt
 import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import sys
+import base64
 
 class poseDetector():
     def __init__(self, mode=False, modelComp = 1, smooth=True, enable_seg=False,
@@ -269,6 +271,10 @@ if IsPose:
 
     # cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
     cv2.imwrite("./public/images/new.jpg", img)
+    retval, buffer_img= cv2.imencode('.jpg', img)
+    data = base64.b64encode(buffer_img)
+    print(data)
+    sys.stdout.flush()
     # cv2.imshow('Image', img)
 
     # if cv2.waitKey(1) & 0xFF == ord('q'):
